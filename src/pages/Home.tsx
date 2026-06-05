@@ -41,6 +41,7 @@ export default function Home() {
     return (
         <div>
             <div>
+                <span>{`query: ${query}`}</span>
                 <span>{`loading: ${loading}`}</span>
                 <span>{`movies: ${movies.length}`}</span>
             </div>
@@ -50,7 +51,7 @@ export default function Home() {
                 placeholder="Search for a movie..."
             />
             {!query && <p>No movie searched</p>}
-            {!error && <p>{error}</p>}
+            {error && <p>{error}</p>}
             <div>
                 {movies.slice(0,20).map((movie) =>
                     <MovieCard key={movie.id} movie={movie} />
