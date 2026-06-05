@@ -16,7 +16,7 @@ export default function Home() {
         setError("")
         setLoading(true)
 
-        try {
+        try{
             const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}`, {
                 headers: {
                     Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`
@@ -30,12 +30,18 @@ export default function Home() {
             // If validation passes, load the results into movies
             const data = await response.json()
             setMovies(data.results)
-        } finally {
+        }  finally {
             setLoading(false)
         }
+
     }
 
-        getData()
+
+        const timer = setTimeout(() => {
+            getData()
+        }, 500)
+        
+        return () => clearTimeout(timer)
     }, [query])
 
     return (
