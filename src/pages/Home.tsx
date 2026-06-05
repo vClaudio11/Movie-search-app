@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import type { Movie } from "../types"
+import MovieCard from "../components/MovieCard"
 
 
 export default function Home() {
@@ -39,11 +40,22 @@ export default function Home() {
 
     return (
         <div>
+            <div>
+                <span>{`loading: ${loading}`}</span>
+                <span>{`movies: ${movies.length}`}</span>
+            </div>
             <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for a movie..."
             />
+            {!query && <p>No movie searched</p>}
+            {!error && <p>{error}</p>}
+            <div>
+                {movies.slice(0,20).map((movie) =>
+                    <MovieCard key={movie.id} movie={movie} />
+                )}
+            </div>
         </div>
     )
 }
