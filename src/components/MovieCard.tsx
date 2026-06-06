@@ -9,7 +9,7 @@ export default function MovieCard({movie}: MovieCardProps) {
     const year = new Date(movie.release_date).getFullYear()
 
     return (
-        <div className="bg-gray-700 rounded-lg shadow-xl">
+        <div className="bg-gray-700 rounded-lg shadow-xl gap-4 hover:scale-105 hover:-translate-y-1 transition-transform duration-150">
             <img
                 className="rounded-t-lg"
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -22,7 +22,7 @@ export default function MovieCard({movie}: MovieCardProps) {
                 </div>
                 {/* <p>{movie.overview}</p> */}
                 <div>
-                    <p className="flex justify-center rounded-md bg-gray-900 max-w-16 py-1 text-yellow-400">⭐ {movie.vote_average.toFixed(1)}</p>
+                    <p className="flex justify-center rounded-md bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 max-w-16 py-1">⭐ {movie.vote_average.toFixed(1)}</p>
                 </div>
             </div>
         </div>
