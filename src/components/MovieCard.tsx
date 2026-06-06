@@ -6,17 +6,25 @@ export interface MovieCardProps {
 }
 
 export default function MovieCard({movie}: MovieCardProps) {
+    const year = new Date(movie.release_date).getFullYear()
 
     return (
-        <div>
-            <h2>{movie.title}</h2>
+        <div className="bg-gray-700 rounded-lg shadow-xl">
             <img
+                className="rounded-t-lg"
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-            />
-            <p>{movie.release_date}</p>
-            <p>{movie.overview}</p>
-            <p>{movie.vote_average}</p>
+                />
+            <div className="flex flex-col justify-end px-4 py-2">
+                <div className="min-h-20">
+                    <h2 className="font-bold">{movie.title}</h2>
+                    <p className="text-sm text-gray-400">{year}</p>
+                </div>
+                {/* <p>{movie.overview}</p> */}
+                <div>
+                    <p className="flex justify-center rounded-md bg-gray-900 max-w-16 py-1 text-yellow-400">⭐ {movie.vote_average.toFixed(1)}</p>
+                </div>
+            </div>
         </div>
 
     )

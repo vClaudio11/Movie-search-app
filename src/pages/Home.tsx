@@ -45,21 +45,24 @@ export default function Home() {
     }, [query])
 
     return (
-        <div>
-            <div>
-                <span>{`query: ${query}`}</span>
-                <span>{`loading: ${loading}`}</span>
-                <span>{`movies: ${movies.length}`}</span>
+        <div className="p-6">
+            <h1 className="flex text-4xl justify-center pb-6 ">Movie Search</h1>
+            <div className="flex flex-row items-center gap-4 pb-6">
+                <span className="bg-gray-700 border border-gray-500 rounded-full text-sm px-4 py-1 ">{`query: "${query}"`}</span>
+                <span className="bg-gray-700 border border-gray-500 rounded-full text-sm px-4 py-1 ">{`loading: ${loading}`}</span>
+                <span className="bg-gray-700 border border-gray-500 rounded-full text-sm px-4 py-1 ">{`movies: ${movies.length}`}</span>
             </div>
             <input
+                className="bg-gray-700 border border-gray-500 min-w-full rounded-lg font-bold px-4 py-2 mb-6 shadow-lg shadow-gray-800"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for a movie..."
             />
-            {!query && <p>No movie searched</p>}
-            {error && <p>{error}</p>}
-            <div>
-                {movies.slice(0,20).map((movie) =>
+            <p className="mb-2 text-sm px-4">Results: </p>
+            {!query && <p className="px-4 text-sm">No movie searched</p>}
+            {error && <p className="px-4 text-sm">{error}</p>}
+            <div className="grid grid-cols-3 gap-4">
+                {movies.filter((movie) => movie.poster_path).slice(0,20).map((movie) =>
                     <MovieCard key={movie.id} movie={movie} />
                 )}
             </div>
