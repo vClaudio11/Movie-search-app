@@ -1,48 +1,13 @@
-import { useEffect, useState } from "react"
-import type { Movie } from "../types"
+import { useState } from "react"
 import MovieCard from "../components/MovieCard"
+import useMovieSearch from "../hooks/useMovieSearch"
 
 
 export default function Home() {
     const [query, setQuery] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [movies, setMovies] = useState<Movie[]>([])
-    const [error, setError] = useState("")
-
-    useEffect(() => {
-        if (!query) return
-        
-        const getData = async () => {
-        setError("")
-        setLoading(true)
-
-        try{
-            const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}`, {
-                headers: {
-                    Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`
-                }
-            })
-            if (!response.ok) {
-                setError("Failed to fetch movies")
-                return
-            }
-
-            // If validation passes, load the results into movies
-            const data = await response.json()
-            setMovies(data.results)
-        }  finally {
-            setLoading(false)
-        }
-
-    }
-
-
-        const timer = setTimeout(() => {
-            getData()
-        }, 500)
-        
-        return () => clearTimeout(timer)
-    }, [query])
+    
+    const {movies, loading, error} = useMovieSearch(query)
+    
 
     return (
         <div className="p-6 max-w-5xl mx-auto">

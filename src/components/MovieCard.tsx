@@ -9,7 +9,7 @@ export default function MovieCard({movie}: MovieCardProps) {
     const year = new Date(movie.release_date).getFullYear()
 
     return (
-        <div className="bg-gray-700 rounded-lg shadow-xl gap-4 hover:scale-105 hover:-translate-y-1 transition-transform duration-150">
+        <div className="bg-gray-700 rounded-lg shadow-xl hover:scale-105 hover:-translate-y-1 transition-transform duration-150">
             <img
                 className="rounded-t-lg"
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
