@@ -45,3 +45,4 @@ and ratings for any film using the TMDB API.
 * [ ] allow user to hover over movie poster to read the overview
 * [ ] allow user to click on the movie card to open an external link to watch that movie
 * [ ] allow users to search / filter movies based of genre buttons
+* [ ] On movie card hover allow users to view recent reviews
